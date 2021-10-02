@@ -7,8 +7,13 @@ import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 import NotFound from "./components/notFound/NotFound";
 import Checkout from "./components/checkout/Checkout";
+import { useDispatch } from "react-redux";
+import { cartActions } from "./store/productsSlice";
 
 const App = () => {
+  const dispatch = useDispatch();
+  dispatch(cartActions.loadProducts());
+
   return (
     <>
       <NavBar />

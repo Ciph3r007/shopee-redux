@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
-import { Context } from "../../context/ContextProvider";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/productsSlice";
 import { useSelector } from "react-redux";
 
 const ProductListing = () => {
-  const { products } = useContext(Context);
-  const { itemQuantity } = useSelector((state) => state);
+  const { allProducts: products, itemQuantity } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (

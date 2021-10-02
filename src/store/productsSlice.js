@@ -1,14 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "cart",
   initialState: {
+    allProducts: [],
     items: [],
     itemQuantity: {},
     totalQuantity: 0,
   },
 
   reducers: {
+    productsReceived: (state, action) => {
+      state.allProducts = action.payload.data;
+    },
+
     itemIncremented: (cart, action) => {
       const { product } = action.payload;
 
@@ -46,5 +51,9 @@ const slice = createSlice({
   },
 });
 
-export const cartActions = slice.actions;
+const apiCallBegan = createAction("api/apiCallBegan");
+const loadProducts = () =>
+  apiCallBegan({ url: "https://fakestoreapi.com/products" });
+
+export const cartActions = { ...slice.actions, apiCallBegan, loadProducts };
 export default slice.reducer;

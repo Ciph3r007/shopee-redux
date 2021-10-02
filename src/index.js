@@ -3,19 +3,17 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-import ContextProvider from "./context/ContextProvider";
 import { Provider } from "react-redux";
-import getStore from "./store/configureStore";
-
-const store = getStore();
+import { store, persistor } from "./store/configureStore";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <ContextProvider>
+        <PersistGate persistor={persistor}>
           <App />
-        </ContextProvider>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
