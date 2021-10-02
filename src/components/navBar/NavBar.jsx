@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import CartSideBar from "../cartSidebar/CartSidebar";
-import { Context } from "../../context/ContextProvider";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
   const navigation = [
@@ -11,7 +11,7 @@ const NavBar = () => {
     { name: "About", href: "/about", current: false },
     { name: "Contact", href: "/contact", current: false },
   ];
-  const { totalItems } = useContext(Context);
+  const { totalQuantity } = useSelector((state) => state);
   const [cartIsOpen, setCartIsOpen] = useState(false);
 
   return (
@@ -71,9 +71,9 @@ const NavBar = () => {
                   >
                     <span className="sr-only">Shopping Cart</span>
                     <ShoppingCartIcon className="h-8 w-8" aria-hidden="true" />
-                    {totalItems !== 0 ? (
+                    {totalQuantity !== 0 ? (
                       <span className="absolute top-11 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-100 transform translate-x-1/2 -translate-y-1/2 bg-indigo-600 rounded-full">
-                        {totalItems}
+                        {totalQuantity}
                       </span>
                     ) : null}
                   </button>

@@ -1,9 +1,15 @@
 import React, { useContext } from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { Context } from "../../context/ContextProvider";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/productsSlice";
+import { useSelector } from "react-redux";
 
 const ProductListing = () => {
-  const { products, inCart, onIncrement, onDecrement } = useContext(Context);
+  const { products } = useContext(Context);
+  const { itemQuantity } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
   return (
     <div className="bg-white max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       {products ? (
@@ -39,19 +45,23 @@ const ProductListing = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900">
-                {inCart[product.id] ? (
+                {itemQuantity[product.id] ? (
                   <>
                     <button
-                      onClick={() => onDecrement(product)}
+                      onClick={() =>
+                        dispatch(cartActions.itemDecremented({ product }))
+                      }
                       className="text-white mx-2 my-2 px-6 py-2 rounded-lg shadow-sm cursor-pointer bg-indigo-700 hover:bg-indigo-800"
                     >
                       <MinusIcon className="h-3 w-3" aria-hidden="true" />
                     </button>
                     <span className="mx-5 text-xl">
-                      {inCart[product.id] || 0}
+                      {itemQuantity[product.id]}
                     </span>
                     <button
-                      onClick={() => onIncrement(product)}
+                      onClick={() =>
+                        dispatch(cartActions.itemIncremented({ product }))
+                      }
                       className="text-white mx-2 my-3 px-6 py-2 rounded-lg shadow-sm cursor-pointer bg-indigo-700 hover:bg-indigo-800"
                     >
                       <PlusIcon className="h-3 w-3" aria-hidden="true" />
@@ -59,7 +69,9 @@ const ProductListing = () => {
                   </>
                 ) : (
                   <button
-                    onClick={() => onIncrement(product)}
+                    onClick={() =>
+                      dispatch(cartActions.itemIncremented({ product }))
+                    }
                     className="flex justify-center items-center mx-2 my-2 px-6 py-2 border border-transparent w-full rounded-md shadow-sm text-base font-medium text-white cursor-pointer bg-indigo-700 hover:bg-indigo-800"
                   >
                     Add to Cart

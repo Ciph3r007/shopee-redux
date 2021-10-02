@@ -3,19 +3,17 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { Context } from "../../context/ContextProvider";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
+import { useSelector, useDispatch } from "react-redux";
+import { cartActions } from "../../store/productsSlice";
 
 const CartSideBar = ({ open, setOpen }) => {
   const {
-    cartItems,
-    inCart,
-    totalItems,
-    onIncrement,
-    onDecrement,
-    onRemove,
-    onEmpty,
-  } = useContext(Context);
+    items: cartItems,
+    itemQuantity,
+    totalQuantity,
+  } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -96,13 +94,19 @@ const CartSideBar = ({ open, setOpen }) => {
                                 <div className="flex-1 flex items-end justify-between text-sm">
                                   <div className="flex justify-center items-center border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900">
                                     <button
-                                      onClick={() => onDecrement(product)}
+                                      onClick={() =>
+                                        dispatch(
+                                          cartActions.itemDecremented({
+                                            product,
+                                          })
+                                        )
+                                      }
                                       className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
-                                        inCart[product.id] === 1
+                                        itemQuantity[product.id] === 1
                                           ? "bg-indigo-400 cursor-default"
                                           : "bg-indigo-700 hover:bg-indigo-800"
                                       }`}
-                                      disabled={inCart[product.id] === 1}
+                                      disabled={itemQuantity[product.id] === 1}
                                     >
                                       <MinusIcon
                                         className="h-3 w-3"
@@ -110,10 +114,16 @@ const CartSideBar = ({ open, setOpen }) => {
                                       />
                                     </button>
                                     <span className="mx-2 text-lg">
-                                      {inCart[product.id]}
+                                      {itemQuantity[product.id]}
                                     </span>
                                     <button
-                                      onClick={() => onIncrement(product)}
+                                      onClick={() =>
+                                        dispatch(
+                                          cartActions.itemIncremented({
+                                            product,
+                                          })
+                                        )
+                                      }
                                       className="bg-indigo-700 text-white mx-2 my-3 px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
                                     >
                                       <PlusIcon
@@ -126,7 +136,11 @@ const CartSideBar = ({ open, setOpen }) => {
                                   <div className="flex">
                                     <button
                                       type="button"
-                                      onClick={() => onRemove(product)}
+                                      onClick={() =>
+                                        dispatch(
+                                          cartActions.itemRemoved({ product })
+                                        )
+                                      }
                                       className="font-medium font-bold text-red-500 mb-3 hover:text-red-800"
                                     >
                                       Remove
@@ -149,7 +163,8 @@ const CartSideBar = ({ open, setOpen }) => {
                         {cartItems
                           .reduce(
                             (accumulator, current) =>
-                              accumulator + current.price * inCart[current.id],
+                              accumulator +
+                              current.price * itemQuantity[current.id],
                             0
                           )
                           .toFixed(2)}
@@ -162,12 +177,12 @@ const CartSideBar = ({ open, setOpen }) => {
                       <Link
                         to="/checkout"
                         className={`flex justify-evenly items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white ${
-                          totalItems > 0
+                          totalQuantity > 0
                             ? "bg-indigo-600 hover:bg-indigo-700"
                             : "bg-indigo-400 cursor-default"
                         }`}
                         onClick={
-                          totalItems > 0
+                          totalQuantity > 0
                             ? () => setOpen(false)
                             : (e) => e.preventDefault()
                         }
@@ -176,7 +191,7 @@ const CartSideBar = ({ open, setOpen }) => {
                       </Link>
                       <button
                         className="items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700"
-                        onClick={onEmpty}
+                        onClick={() => dispatch(cartActions.cartEmptied())}
                       >
                         Empty Cart
                       </button>
