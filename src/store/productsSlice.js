@@ -7,6 +7,7 @@ const slice = createSlice({
     items: [],
     itemQuantity: {},
     totalQuantity: 0,
+    index: 100,
   },
 
   reducers: {
@@ -27,7 +28,7 @@ const slice = createSlice({
       const { product } = action.payload;
 
       if (cart.itemQuantity[product.id] === 1) {
-        const index = cart.items.indexOf(product);
+        const index = cart.items.findIndex((item) => item.id === product.id);
         cart.items.splice(index, 1);
       }
 
@@ -37,7 +38,7 @@ const slice = createSlice({
 
     itemRemoved: (cart, action) => {
       const { product } = action.payload;
-      const index = cart.items.indexOf(product);
+      const index = cart.items.findIndex((item) => item.id === product.id);
       cart.items.splice(index, 1);
       cart.totalQuantity -= cart.itemQuantity[product.id];
       cart.itemQuantity[product.id] = 0;
