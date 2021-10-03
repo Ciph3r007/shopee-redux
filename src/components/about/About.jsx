@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -84,12 +85,12 @@ const About = () => {
                 </div>
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="inline-block text-center bg-indigo-600 border border-transparent rounded-md py-3 px-8 font-medium text-white hover:bg-indigo-700"
               >
-                Shop Collection
-              </a>
+                Browse Shop
+              </Link>
             </div>
           </div>
         </div>
