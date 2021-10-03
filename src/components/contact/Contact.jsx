@@ -12,8 +12,8 @@ const Contact = () => {
       <p className="text-center mb-32 text-xl font-normal text-gray-500">
         Meet the best team in wolrd
       </p>
-      <div className="flex items-center space-y-24 md:space-y-0 flex-col md:flex-row justify-evenly">
-        <div className="p-4 relative">
+      <div className="flex items-center space-y-24 md:space-y-0 flex-col md:flex-row justify-evenly mx-40 ">
+        <div className="p-4 relative transform sm:scale-100 md:scale-75 lg:scale-100">
           <div className="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2 shadow-sm border rounded-lg">
             <a href="#" className="block relative">
               <img
@@ -88,7 +88,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="p-4 relative">
+        <div className="p-4 relative transform sm:scale-100 md:scale-75 lg:scale-100">
           <div className="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2 shadow-sm border rounded-lg">
             <a href="#" className="block relative">
               <img
@@ -164,7 +164,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="p-4 relative">
+        <div className="p-4 relative transform sm:scale-100 md:scale-75 lg:scale-100">
           <div className="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2 shadow-sm border rounded-lg">
             <a href="#" className="block relative">
               <img

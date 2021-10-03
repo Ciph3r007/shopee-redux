@@ -4,6 +4,7 @@ import { Disclosure } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import CartSideBar from "../cartSidebar/CartSidebar";
 import { useSelector } from "react-redux";
+import logo from "../../assets/img/logo.png";
 
 const NavBar = () => {
   const navigation = [
@@ -37,12 +38,12 @@ const NavBar = () => {
                     <Link to="/">
                       <img
                         className="block lg:hidden h-8 w-auto p-1"
-                        src="https://i.ibb.co/vjGVTRX/image-1.png"
+                        src={logo}
                         alt="Workflow"
                       />
                       <img
                         className="hidden lg:block h-8 w-auto p-1 mr-10"
-                        src="https://i.ibb.co/vjGVTRX/image-1.png"
+                        src={logo}
                         alt="Workflow"
                       />
                     </Link>
