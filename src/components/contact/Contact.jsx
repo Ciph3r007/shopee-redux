@@ -92,7 +92,7 @@ const Contact = () => {
           <div className="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2 shadow-sm border rounded-lg">
             <a href="#" className="block relative">
               <img
-                alt="profil"
+                alt="profile"
                 src={profileMasumBhai}
                 className="mx-auto object-cover rounded-lg h-40 w-40  border-2 border-white dark:border-gray-800 "
               />
@@ -168,7 +168,7 @@ const Contact = () => {
           <div className="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2 shadow-sm border rounded-lg">
             <a href="#" className="block relative">
               <img
-                alt="profil"
+                alt="profile"
                 src={profileAnikBhai}
                 className="mx-auto object-cover rounded-lg h-40 w-40  border-2 border-white dark:border-gray-800"
               />

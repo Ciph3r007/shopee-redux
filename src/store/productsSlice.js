@@ -1,4 +1,4 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice, createSelector } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "cart",
@@ -7,7 +7,6 @@ const slice = createSlice({
     items: [],
     itemQuantity: {},
     totalQuantity: 0,
-    index: 100,
   },
 
   reducers: {
@@ -51,6 +50,18 @@ const slice = createSlice({
     },
   },
 });
+
+const getSubtotal = createSelector(
+  (state) => state,
+  (state) =>
+    state.items
+      .reduce(
+        (accumulator, current) =>
+          accumulator + current.price * state.itemQuantity[current.id],
+        0
+      )
+      .toFixed(2)
+);
 
 const apiCallBegan = createAction("api/apiCallBegan");
 const loadProducts = () =>
