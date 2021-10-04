@@ -51,13 +51,14 @@ const slice = createSlice({
   },
 });
 
-const getSubtotal = createSelector(
-  (state) => state,
-  (state) =>
-    state.items
+export const getSubtotal = createSelector(
+  (state) => state.items,
+  (state) => state.itemQuantity,
+  (items, itemQuantity) =>
+    items
       .reduce(
         (accumulator, current) =>
-          accumulator + current.price * state.itemQuantity[current.id],
+          accumulator + current.price * itemQuantity[current.id],
         0
       )
       .toFixed(2)

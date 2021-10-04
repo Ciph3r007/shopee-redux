@@ -5,7 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { useSelector, useDispatch } from "react-redux";
-import { cartActions } from "../../store/productsSlice";
+import { cartActions, getSubtotal } from "../../store/productsSlice";
 import Modal from "../common/Modal";
 
 const CartSideBar = ({ open, setOpen }) => {
@@ -15,6 +15,7 @@ const CartSideBar = ({ open, setOpen }) => {
     itemQuantity,
     totalQuantity,
   } = useSelector((state) => state);
+  const subTotal = useSelector(getSubtotal);
   const dispatch = useDispatch();
 
   return (
@@ -165,17 +166,7 @@ const CartSideBar = ({ open, setOpen }) => {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-bold text-gray-900">
                         <p>Subtotal</p>
-                        <p>
-                          $
-                          {cartItems
-                            .reduce(
-                              (accumulator, current) =>
-                                accumulator +
-                                current.price * itemQuantity[current.id],
-                              0
-                            )
-                            .toFixed(2)}
-                        </p>
+                        <p>${subTotal}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500 italic">
                         Shipping and taxes calculated at checkout.
