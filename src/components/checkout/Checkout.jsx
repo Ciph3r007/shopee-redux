@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
+import { IoPricetag } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/productsSlice";
 import { getSubtotal } from "../../store/productsSlice";
@@ -151,10 +152,10 @@ const Checkout = () => {
           </div>
           <div className="inset-y-0 h-full flex">
             <div className="w-screen md:max-w-sm xl:max-w-lg">
-              <div className=" flex flex-col h-screen md:h-4/5">
-                <div className="flex-1 px-8 py-6 overflow-y-scroll sm:px-6">
+              <div className="flex flex-col h-screen md:pl-12 md:h-full">
+                <div className="px-8 py-6 overflow-y-scroll sm:px-6">
                   <div className="flex items-start justify-between">
-                    <div className="text-lg font-medium text-gray-900">
+                    <div className="text-lg font-bold text-gray-900">
                       Order Summary
                     </div>
                   </div>
@@ -164,11 +165,11 @@ const Checkout = () => {
                       <ul className="-my-6 divide-y divide-gray-200">
                         {cartItems.map((product) => (
                           <li key={product.id} className="py-6 flex">
-                            <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden ">
+                            <div className="flex-shrink-0 w-24 h-24 rounded-md overflow-hidden ">
                               <img
                                 src={product.image}
                                 alt={product.title}
-                                className="w-full h-full object-center object-cover"
+                                className="w-full h-full object-center object-contain"
                               />
                             </div>
 
@@ -179,11 +180,17 @@ const Checkout = () => {
                                     <a href={product.href}>{product.title}</a>
                                   </h3>
                                   <p className="ml-4 font-bold">
-                                    ${product.price}
+                                    $
+                                    {(
+                                      product.price * itemQuantity[product.id]
+                                    ).toFixed(2)}
                                   </p>
                                 </div>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {product.category.toUpperCase()}
+                                <p className="my-3 text-sm font-medium text-gray-900">
+                                  <IoPricetag className="inline text-gray-900 h-5 w-5 mr-1" />
+                                  <span class="  px-2 py-1  text-md font-bold leading-none text-gray-700 bg-gray-200 rounded-md">
+                                    ${product.price}
+                                  </span>
                                 </p>
                               </div>
                               <div className="flex-1 flex items-end justify-between text-sm">
@@ -250,10 +257,26 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                  <div className="flex justify-between text-base font-bold text-gray-900">
+                <div className="border-t border-gray-200 py-3 px-4 sm:px-6">
+                  <div className="flex justify-between text-base font-semibold text-gray-700">
                     <p>Subtotal</p>
                     <p>${subTotal}</p>
+                  </div>
+                  <div className="border-t border-gray-200 px-4 my-1 sm:px-6"></div>
+                  <div className="flex justify-between text-base font-semibold text-gray-700">
+                    <p>Shipping Fee</p>
+                    <p>${10 * cartItems.length}.00</p>
+                  </div>
+                  <div className="flex justify-between text-base font-semibold text-gray-700">
+                    <p>Tax</p>
+                    <p>${(subTotal * 0.125).toFixed(2)}</p>
+                  </div>
+                  <div className="border-t border-gray-200 px-4 my-1 sm:px-6"></div>
+                  <div className="flex justify-between text-base font-bold text-gray-900">
+                    <p>Total</p>
+                    <p>
+                      ${(subTotal * 1.125 + 10 * cartItems.length).toFixed(2)}
+                    </p>
                   </div>
                 </div>
               </div>

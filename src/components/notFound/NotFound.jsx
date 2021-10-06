@@ -5,6 +5,7 @@ const NotFound = () => {
     <div class="bg-indigo-900 relative overflow-hidden h-screen">
       <img
         src="https://wallpaperaccess.com/full/3671308.jpg"
+        alt="background"
         className="absolute h-full w-full object-cover overflow-hidden mb-10"
       />
       <div class="inset-0 bg-black opacity-25 absolute"></div>
