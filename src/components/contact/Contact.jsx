@@ -108,8 +108,7 @@ const Contact = () => {
               </p>
               <p className="text-md text-gray-500 w-60 dark:text-gray-400 mx-auto py-4 font-light">
                 A winner who can inspire the whole company to win too. He is a
-                top world class choice for leading a software or technology
-                team.
+                world class choice for leading a software or technology team.
               </p>
             </div>
             <div className="pt-8 flex border-t border-gray-200 w-40 mx-auto text-gray-500 items-center justify-between">
