@@ -5,7 +5,7 @@ import profileAnikBhai from "../../assets/img/profile-anik-bhai.jpg";
 
 const Contact = () => {
   return (
-    <div className="p-4">
+    <div className="p-4 pt-24">
       <p className="text-center text-3xl font-bold text-gray-800">
         Professional team
       </p>

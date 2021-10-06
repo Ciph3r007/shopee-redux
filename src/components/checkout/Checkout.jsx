@@ -149,113 +149,111 @@ const Checkout = () => {
               </div>
             </form>
           </div>
-          <div className="">
-            <div className="inset-y-0 h-full flex">
-              <div className="w-screen md:max-w-sm xl:max-w-lg">
-                <div className=" flex flex-col h-screen md:h-4/5">
-                  <div className="flex-1 px-8 py-6 overflow-y-scroll sm:px-6">
-                    <div className="flex items-start justify-between">
-                      <div className="text-lg font-medium text-gray-900">
-                        Order Summary
-                      </div>
-                    </div>
-
-                    <div className="mt-8">
-                      <div className="flow-root">
-                        <ul className="-my-6 divide-y divide-gray-200">
-                          {cartItems.map((product) => (
-                            <li key={product.id} className="py-6 flex">
-                              <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden ">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className="w-full h-full object-center object-cover"
-                                />
-                              </div>
-
-                              <div className="ml-4 flex-1 flex flex-col">
-                                <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
-                                    <h3>
-                                      <a href={product.href}>{product.title}</a>
-                                    </h3>
-                                    <p className="ml-4 font-bold">
-                                      ${product.price}
-                                    </p>
-                                  </div>
-                                  <p className="mt-1 text-sm text-gray-500">
-                                    {product.category.toUpperCase()}
-                                  </p>
-                                </div>
-                                <div className="flex-1 flex items-end justify-between text-sm">
-                                  <div className="flex justify-center items-center border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900">
-                                    <button
-                                      onClick={() =>
-                                        dispatch(
-                                          cartActions.itemDecremented({
-                                            product,
-                                          })
-                                        )
-                                      }
-                                      className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
-                                        itemQuantity[product.id] === 1
-                                          ? "bg-indigo-400 cursor-default"
-                                          : "bg-indigo-700 hover:bg-indigo-800"
-                                      }`}
-                                      disabled={itemQuantity[product.id] === 1}
-                                    >
-                                      <MinusIcon
-                                        className="h-3 w-3"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                    <span className="mx-2 text-lg">
-                                      {itemQuantity[product.id]}
-                                    </span>
-                                    <button
-                                      onClick={() =>
-                                        dispatch(
-                                          cartActions.itemIncremented({
-                                            product,
-                                          })
-                                        )
-                                      }
-                                      className="bg-indigo-700 text-white mx-2 my-3 px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
-                                    >
-                                      <PlusIcon
-                                        className="h-3 w-3"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                  </div>
-
-                                  <div className="flex">
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        dispatch(
-                                          cartActions.itemRemoved({ product })
-                                        )
-                                      }
-                                      className="font-medium font-bold text-red-500 mb-3 hover:text-red-800"
-                                    >
-                                      Remove
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+          <div className="inset-y-0 h-full flex">
+            <div className="w-screen md:max-w-sm xl:max-w-lg">
+              <div className=" flex flex-col h-screen md:h-4/5">
+                <div className="flex-1 px-8 py-6 overflow-y-scroll sm:px-6">
+                  <div className="flex items-start justify-between">
+                    <div className="text-lg font-medium text-gray-900">
+                      Order Summary
                     </div>
                   </div>
 
-                  <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                    <div className="flex justify-between text-base font-bold text-gray-900">
-                      <p>Subtotal</p>
-                      <p>${subTotal}</p>
+                  <div className="mt-8">
+                    <div className="flow-root">
+                      <ul className="-my-6 divide-y divide-gray-200">
+                        {cartItems.map((product) => (
+                          <li key={product.id} className="py-6 flex">
+                            <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden ">
+                              <img
+                                src={product.image}
+                                alt={product.title}
+                                className="w-full h-full object-center object-cover"
+                              />
+                            </div>
+
+                            <div className="ml-4 flex-1 flex flex-col">
+                              <div>
+                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                  <h3>
+                                    <a href={product.href}>{product.title}</a>
+                                  </h3>
+                                  <p className="ml-4 font-bold">
+                                    ${product.price}
+                                  </p>
+                                </div>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {product.category.toUpperCase()}
+                                </p>
+                              </div>
+                              <div className="flex-1 flex items-end justify-between text-sm">
+                                <div className="flex justify-center items-center border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900">
+                                  <button
+                                    onClick={() =>
+                                      dispatch(
+                                        cartActions.itemDecremented({
+                                          product,
+                                        })
+                                      )
+                                    }
+                                    className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
+                                      itemQuantity[product.id] === 1
+                                        ? "bg-indigo-400 cursor-default"
+                                        : "bg-indigo-700 hover:bg-indigo-800"
+                                    }`}
+                                    disabled={itemQuantity[product.id] === 1}
+                                  >
+                                    <MinusIcon
+                                      className="h-3 w-3"
+                                      aria-hidden="true"
+                                    />
+                                  </button>
+                                  <span className="mx-2 text-lg">
+                                    {itemQuantity[product.id]}
+                                  </span>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(
+                                        cartActions.itemIncremented({
+                                          product,
+                                        })
+                                      )
+                                    }
+                                    className="bg-indigo-700 text-white mx-2 my-3 px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
+                                  >
+                                    <PlusIcon
+                                      className="h-3 w-3"
+                                      aria-hidden="true"
+                                    />
+                                  </button>
+                                </div>
+
+                                <div className="flex">
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      dispatch(
+                                        cartActions.itemRemoved({ product })
+                                      )
+                                    }
+                                    className="font-medium font-bold text-red-500 mb-3 hover:text-red-800"
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+                  <div className="flex justify-between text-base font-bold text-gray-900">
+                    <p>Subtotal</p>
+                    <p>${subTotal}</p>
                   </div>
                 </div>
               </div>
