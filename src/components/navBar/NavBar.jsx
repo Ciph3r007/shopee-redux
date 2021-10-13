@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { useLocation, Link, NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import CartSideBar from "../cartSidebar/CartSidebar";
@@ -12,8 +12,10 @@ const NavBar = () => {
     { name: "About", href: "/about", current: false },
     { name: "Contact", href: "/contact", current: false },
   ];
+
   const { totalQuantity } = useSelector((state) => state);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const path = useLocation().pathname;
 
   return (
     <>
@@ -67,7 +69,13 @@ const NavBar = () => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div
+                  className={
+                    path === "/not-found" || path === "/checkout"
+                      ? "hidden"
+                      : "absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+                  }
+                >
                   <button
                     type="button"
                     onClick={() => setCartIsOpen(!cartIsOpen)}
