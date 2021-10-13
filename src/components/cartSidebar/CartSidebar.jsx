@@ -1,20 +1,17 @@
-import React, { useState } from "react";
-import { Fragment } from "react";
+import React, { useState, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
-import { useSelector, useDispatch } from "react-redux";
 import { cartActions, getSubtotal } from "../../store/productsSlice";
 import Modal from "../common/Modal";
 
 const CartSideBar = ({ open, setOpen }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const {
-    items: cartItems,
-    itemQuantity,
-    totalQuantity,
-  } = useSelector((state) => state);
+  const { cartItems, quantityById, totalQuantity } = useSelector(
+    (state) => state
+  );
   const subTotal = useSelector(getSubtotal);
   const dispatch = useDispatch();
 
@@ -108,12 +105,12 @@ const CartSideBar = ({ open, setOpen }) => {
                                           )
                                         }
                                         className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
-                                          itemQuantity[product.id] === 1
+                                          quantityById[product.id] === 1
                                             ? "bg-indigo-400 cursor-default"
                                             : "bg-indigo-700 hover:bg-indigo-800"
                                         }`}
                                         disabled={
-                                          itemQuantity[product.id] === 1
+                                          quantityById[product.id] === 1
                                         }
                                       >
                                         <MinusIcon
@@ -122,7 +119,7 @@ const CartSideBar = ({ open, setOpen }) => {
                                         />
                                       </button>
                                       <span className="mx-2 text-lg">
-                                        {itemQuantity[product.id]}
+                                        {quantityById[product.id]}
                                       </span>
                                       <button
                                         onClick={() =>

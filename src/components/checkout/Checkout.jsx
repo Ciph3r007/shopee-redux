@@ -1,13 +1,12 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { IoPricetag } from "react-icons/io5";
-import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/productsSlice";
 import { getSubtotal } from "../../store/productsSlice";
 
 const Checkout = () => {
-  const { itemQuantity, items: cartItems } = useSelector((state) => state);
+  const { quantityById, cartItems } = useSelector((state) => state);
   const subTotal = useSelector(getSubtotal);
   const dispatch = useDispatch();
 
@@ -182,7 +181,7 @@ const Checkout = () => {
                                   <p className="ml-4 font-bold">
                                     $
                                     {(
-                                      product.price * itemQuantity[product.id]
+                                      product.price * quantityById[product.id]
                                     ).toFixed(2)}
                                   </p>
                                 </div>
@@ -204,11 +203,11 @@ const Checkout = () => {
                                       )
                                     }
                                     className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
-                                      itemQuantity[product.id] === 1
+                                      quantityById[product.id] === 1
                                         ? "bg-indigo-400 cursor-default"
                                         : "bg-indigo-700 hover:bg-indigo-800"
                                     }`}
-                                    disabled={itemQuantity[product.id] === 1}
+                                    disabled={quantityById[product.id] === 1}
                                   >
                                     <MinusIcon
                                       className="h-3 w-3"
@@ -216,7 +215,7 @@ const Checkout = () => {
                                     />
                                   </button>
                                   <span className="mx-2 text-lg">
-                                    {itemQuantity[product.id]}
+                                    {quantityById[product.id]}
                                   </span>
                                   <button
                                     onClick={() =>

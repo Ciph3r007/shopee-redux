@@ -1,11 +1,11 @@
 import { createAction, createSlice, createSelector } from "@reduxjs/toolkit";
 
 const slice = createSlice({
-  name: "cart",
+  name: "products",
   initialState: {
     allProducts: [],
-    items: [],
-    itemQuantity: {},
+    cartItems: [],
+    quantityById: {},
     totalQuantity: 0,
   },
 
@@ -14,51 +14,54 @@ const slice = createSlice({
       state.allProducts = action.payload.data;
     },
 
-    itemIncremented: (cart, action) => {
+    itemIncremented: (state, action) => {
       const { product } = action.payload;
 
-      if (!cart.itemQuantity[product.id]) cart.items.push(product);
+      if (!state.quantityById[product.id]) state.cartItems.push(product);
 
-      cart.itemQuantity[product.id] = (cart.itemQuantity[product.id] || 0) + 1;
-      cart.totalQuantity += 1;
+      state.quantityById[product.id] =
+        (state.quantityById[product.id] || 0) + 1;
+      state.totalQuantity += 1;
     },
 
-    itemDecremented: (cart, action) => {
+    itemDecremented: (state, action) => {
       const { product } = action.payload;
 
-      if (cart.itemQuantity[product.id] === 1) {
-        const index = cart.items.findIndex((item) => item.id === product.id);
-        cart.items.splice(index, 1);
+      if (state.quantityById[product.id] === 1) {
+        const index = state.cartItems.findIndex(
+          (item) => item.id === product.id
+        );
+        state.cartItems.splice(index, 1);
       }
 
-      cart.totalQuantity -= 1;
-      cart.itemQuantity[product.id] -= 1;
+      state.totalQuantity -= 1;
+      state.quantityById[product.id] -= 1;
     },
 
-    itemRemoved: (cart, action) => {
+    itemRemoved: (state, action) => {
       const { product } = action.payload;
-      const index = cart.items.findIndex((item) => item.id === product.id);
-      cart.items.splice(index, 1);
-      cart.totalQuantity -= cart.itemQuantity[product.id];
-      cart.itemQuantity[product.id] = 0;
+      const index = state.cartItems.findIndex((item) => item.id === product.id);
+      state.cartItems.splice(index, 1);
+      state.totalQuantity -= state.quantityById[product.id];
+      state.quantityById[product.id] = 0;
     },
 
-    cartEmptied: (cart, action) => {
-      cart.items = [];
-      cart.totalQuantity = 0;
-      cart.itemQuantity = {};
+    cartEmptied: (state, action) => {
+      state.cartItems = [];
+      state.totalQuantity = 0;
+      state.quantityById = {};
     },
   },
 });
 
 export const getSubtotal = createSelector(
-  (state) => state.items,
-  (state) => state.itemQuantity,
-  (items, itemQuantity) =>
-    items
+  (state) => state.cartItems,
+  (state) => state.quantityById,
+  (cartItems, quantityById) =>
+    cartItems
       .reduce(
         (accumulator, current) =>
-          accumulator + current.price * itemQuantity[current.id],
+          accumulator + current.price * quantityById[current.id],
         0
       )
       .toFixed(2)

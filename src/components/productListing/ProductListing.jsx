@@ -1,11 +1,10 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/productsSlice";
-import { useSelector } from "react-redux";
 
 const ProductListing = () => {
-  const { allProducts: products, itemQuantity } = useSelector((state) => state);
+  const { allProducts: products, quantityById } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   return (
@@ -43,7 +42,7 @@ const ProductListing = () => {
                 </div>
               </div>
               <div className="flex justify-center items-center border border-transparent rounded-md shadow-sm text-base font-medium text-gray-900">
-                {itemQuantity[product.id] ? (
+                {quantityById[product.id] ? (
                   <>
                     <button
                       onClick={() =>
@@ -54,7 +53,7 @@ const ProductListing = () => {
                       <MinusIcon className="h-3 w-3" aria-hidden="true" />
                     </button>
                     <span className="mx-5 text-xl">
-                      {itemQuantity[product.id]}
+                      {quantityById[product.id]}
                     </span>
                     <button
                       onClick={() =>

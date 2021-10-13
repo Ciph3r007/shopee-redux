@@ -1,5 +1,7 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartActions } from "./store/productsSlice";
 import NavBar from "./components/navBar/NavBar";
 import ProductListing from "./components/productListing/ProductListing";
 import Product from "./components/product/Product.jsx";
@@ -7,8 +9,6 @@ import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 import NotFound from "./components/notFound/NotFound";
 import Checkout from "./components/checkout/Checkout";
-import { useDispatch } from "react-redux";
-import { cartActions } from "./store/productsSlice";
 
 const App = () => {
   const dispatch = useDispatch();

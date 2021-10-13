@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { ShoppingCartIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import CartSideBar from "../cartSidebar/CartSidebar";
-import { useSelector } from "react-redux";
 import logo from "../../assets/img/logo.png";
 
 const NavBar = () => {
@@ -17,7 +17,10 @@ const NavBar = () => {
 
   return (
     <>
-      <Disclosure as="nav" className="bg-gray-800 fixed w-full top-0 z-50">
+      <Disclosure
+        as="nav"
+        className="bg-gray-800 sticky sm:fixed sm:w-full top-0 z-50"
+      >
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -68,7 +71,7 @@ const NavBar = () => {
                   <button
                     type="button"
                     onClick={() => setCartIsOpen(!cartIsOpen)}
-                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white "
                   >
                     <span className="sr-only">Shopping Cart</span>
                     <ShoppingCartIcon className="h-8 w-8" aria-hidden="true" />
