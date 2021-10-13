@@ -12,7 +12,7 @@ const Checkout = () => {
 
   return (
     <>
-      <div className="container p-12 pt-24 mx-auto h-screen">
+      <div className="container p-12 sm:pt-24 mx-auto h-screen">
         <div className="flex flex-col w-full h-full px-0 mx-auto md:flex-row">
           <div className="flex flex-col md:w-full">
             <h2 className="mb-4 font-bold md:text-xl text-heading ">
