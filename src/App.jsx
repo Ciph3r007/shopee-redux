@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "./store/productsSlice";
 import NavBar from "./components/navBar/NavBar";
 import ProductListing from "./components/productListing/ProductListing";
-import Product from "./components/product/Product.jsx";
+import ProductOverview from "./components/productOverview/ProductOverview";
 import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 import NotFound from "./components/notFound/NotFound";
@@ -18,7 +18,7 @@ const App = () => {
     <>
       <NavBar />
       <Switch>
-        <Route exact path="/products/:id" component={Product} />
+        <Route exact path="/products/:id" component={ProductOverview} />
         <Route exact path="/about" component={About} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/checkout" component={Checkout} />
