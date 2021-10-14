@@ -81,11 +81,12 @@ const CartSideBar = ({ open, setOpen }) => {
                                 <div className="ml-4 flex-1 flex flex-col">
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.href}>
-                                          {product.title}
-                                        </a>
-                                      </h3>
+                                      <Link
+                                        to={`/products/${product.id}`}
+                                        className="font-medium text-gray-700 hover:text-indigo-800 "
+                                      >
+                                        {product.title}
+                                      </Link>
                                       <p className="ml-4 font-bold">
                                         ${product.price}
                                       </p>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { IoPricetag } from "react-icons/io5";
 import { cartActions } from "../../store/productsSlice";
@@ -31,9 +32,13 @@ const OrderSummary = () => {
                 <div className="ml-4 flex-1 flex flex-col">
                   <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
-                      <h3>
-                        <a href={product.href}>{product.title}</a>
-                      </h3>
+                      <Link
+                        to={`/products/${product.id}`}
+                        target="_blank"
+                        className="font-medium text-gray-700 hover:text-indigo-800 "
+                      >
+                        {product.title}
+                      </Link>
                       <p className="ml-4 font-bold">
                         ${(product.price * quantityById[product.id]).toFixed(2)}
                       </p>
