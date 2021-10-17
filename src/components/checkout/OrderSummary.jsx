@@ -44,7 +44,7 @@ const OrderSummary = () => {
                       </p>
                     </div>
                     <p className="my-3 text-sm font-medium text-gray-900">
-                      <IoPricetag className="inline text-gray-900 h-5 w-5 mr-1" />
+                      <IoPricetag className="inline text-gray-800 h-5 w-5 mr-1" />
                       <span class="px-2 py-1  text-md font-bold leading-none text-gray-700 bg-gray-200 rounded-md">
                         ${product.price.toFixed(2)}
                       </span>

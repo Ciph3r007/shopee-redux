@@ -70,24 +70,24 @@ const CartSideBar = ({ open, setOpen }) => {
                           <ul className="-my-6 divide-y divide-gray-200">
                             {cartItems.map((product) => (
                               <li key={product.id} className="py-6 flex">
-                                <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden ">
+                                <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-md overflow-hidden ">
                                   <img
                                     src={product.image}
                                     alt={product.title}
-                                    className="w-full h-full object-center object-cover"
+                                    className="w-full h-full object-center object-contain"
                                   />
                                 </div>
 
-                                <div className="ml-4 flex-1 flex flex-col">
+                                <div className="ml-2 sm:ml-4 flex-1 flex flex-col">
                                   <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                    <div className="flex justify-between text-sm sm:text-base font-medium text-gray-900">
                                       <Link
                                         to={`/products/${product.id}`}
-                                        className="font-medium text-gray-700 hover:text-indigo-800 "
+                                        className="w-24 sm:w-full font-medium text-gray-700 hover:text-indigo-800 "
                                       >
                                         {product.title}
                                       </Link>
-                                      <p className="ml-4 font-bold">
+                                      <p className="ml-2 sm:ml-4 font-bold">
                                         ${product.price}
                                       </p>
                                     </div>
@@ -105,7 +105,7 @@ const CartSideBar = ({ open, setOpen }) => {
                                             })
                                           )
                                         }
-                                        className={`text-white mx-1 my-2 px-3 py-1 rounded-lg shadow-sm   ${
+                                        className={`text-white mx-1 my-2 px-2 sm:px-3 py-1 rounded-lg shadow-sm   ${
                                           quantityById[product.id] === 1
                                             ? "bg-indigo-400 cursor-default"
                                             : "bg-indigo-700 hover:bg-indigo-800"
@@ -119,7 +119,7 @@ const CartSideBar = ({ open, setOpen }) => {
                                           aria-hidden="true"
                                         />
                                       </button>
-                                      <span className="mx-2 text-lg">
+                                      <span className="mx-1 sm:mx-2 text-lg">
                                         {quantityById[product.id]}
                                       </span>
                                       <button
@@ -130,7 +130,7 @@ const CartSideBar = ({ open, setOpen }) => {
                                             })
                                           )
                                         }
-                                        className="bg-indigo-700 text-white mx-2 my-3 px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
+                                        className="bg-indigo-700 text-white mx-2 my-2 px-2 sm:px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
                                       >
                                         <PlusIcon
                                           className="h-3 w-3"
@@ -169,10 +169,10 @@ const CartSideBar = ({ open, setOpen }) => {
                       <p className="mt-0.5 text-sm text-gray-500 italic">
                         Shipping and taxes calculated at checkout.
                       </p>
-                      <div className="mt-6 grid grid-flow-row grid-cols-2 gap-2">
+                      <div className="mt-2 grid grid-flow-col grid-rows-2 sm:grid-flow-row sm:grid-rows-1 sm:grid-cols-2 gap-1 sm:gap-2">
                         <Link
                           to="/checkout"
-                          className={`flex justify-evenly items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white ${
+                          className={`flex justify-evenly items-center px-6 py-2 sm:py-3 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white ${
                             totalQuantity > 0
                               ? "bg-indigo-600 hover:bg-indigo-700"
                               : "bg-indigo-400 cursor-default"
@@ -186,7 +186,7 @@ const CartSideBar = ({ open, setOpen }) => {
                           Checkout
                         </Link>
                         <button
-                          className={`items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white ${
+                          className={`items-center px-6 py-2 sm:py-3 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white ${
                             totalQuantity > 0
                               ? "bg-red-600 hover:bg-red-700"
                               : "bg-red-400 cursor-default"

@@ -14,7 +14,7 @@ function ProductOverview({ match }) {
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
-            class="mx-auto w-2/3 sm:1/2 lg:w-2/5  sm:p-8 object-contain object-center rounded-lg border-2 border-gray-200 p-2 shadow-inner"
+            class="mx-auto w-2/3 sm:1/2 lg:w-2/5 max-w-md  sm:p-8 object-contain object-center rounded-lg border-2 border-gray-200 p-2 shadow-inner"
             src={product.image}
           />
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -22,7 +22,7 @@ function ProductOverview({ match }) {
               {product.category}
             </h2>
 
-            <h1 class="text-gray-900 text-3xl title-font font-extrabold mb-1">
+            <h1 class="text-gray-900 text-xl sm:text-3xl title-font font-extrabold mb-1">
               {product.title}
             </h1>
             <div class="flex mb-4">
