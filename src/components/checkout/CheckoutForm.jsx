@@ -139,7 +139,7 @@ const CheckoutForm = () => {
             ></textarea>
           </div>
           <div className="mt-4">
-            <button className="w-full px-6 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-700 hover:bg-indigo-800 mb-4">
+            <button className="w-full px-6 py-1 sm:py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-700 hover:bg-indigo-800 mb-4">
               Process
             </button>
           </div>
