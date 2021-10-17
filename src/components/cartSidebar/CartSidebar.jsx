@@ -169,10 +169,10 @@ const CartSideBar = ({ open, setOpen }) => {
                       <p className="mt-0.5 text-sm text-gray-500 italic">
                         Shipping and taxes calculated at checkout.
                       </p>
-                      <div className="mt-2 grid grid-flow-col grid-rows-2 sm:grid-flow-row sm:grid-rows-1 sm:grid-cols-2 gap-1 sm:gap-2">
+                      <div className="mt-2 grid grid-flow-col grid-rows-2 xsm:grid-flow-row xsm:grid-rows-1 xsm:grid-cols-2 gap-1 xsm:gap-2">
                         <Link
                           to="/checkout"
-                          className={`flex justify-evenly items-center px-6 py-2 sm:py-3 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white ${
+                          className={`flex justify-evenly items-center px-6 py-2 xsm:py-3 border border-transparent rounded-md shadow-sm text-sm xsm:text-base font-medium text-white ${
                             totalQuantity > 0
                               ? "bg-indigo-600 hover:bg-indigo-700"
                               : "bg-indigo-400 cursor-default"
@@ -186,7 +186,7 @@ const CartSideBar = ({ open, setOpen }) => {
                           Checkout
                         </Link>
                         <button
-                          className={`items-center px-6 py-2 sm:py-3 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white ${
+                          className={`items-center px-6 py-2 xsm:py-3 border border-transparent rounded-md shadow-sm text-sm xsm:text-base font-medium text-white ${
                             totalQuantity > 0
                               ? "bg-red-600 hover:bg-red-700"
                               : "bg-red-400 cursor-default"

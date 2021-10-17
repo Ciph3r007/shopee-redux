@@ -60,7 +60,7 @@ const OrderSummary = () => {
                             })
                           )
                         }
-                        className={`text-white mx-1 my-2 px-2 sm:px-3 py-1 rounded-lg shadow-sm   ${
+                        className={`text-white mx-1 my-2 px-2 xsm:px-3 py-1 rounded-lg shadow-sm   ${
                           quantityById[product.id] === 1
                             ? "bg-indigo-400 cursor-default"
                             : "bg-indigo-700 hover:bg-indigo-800"
@@ -80,7 +80,7 @@ const OrderSummary = () => {
                             })
                           )
                         }
-                        className="bg-indigo-700 text-white mx-2 my-2 px-2 sm:px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
+                        className="bg-indigo-700 text-white mx-2 my-2 px-2 xsm:px-3 py-1 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-800"
                       >
                         <PlusIcon className="h-3 w-3" aria-hidden="true" />
                       </button>
