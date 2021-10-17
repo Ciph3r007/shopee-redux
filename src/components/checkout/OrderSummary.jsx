@@ -35,7 +35,7 @@ const OrderSummary = () => {
                       <Link
                         to={`/products/${product.id}`}
                         target="_blank"
-                        className="w-24 sm:w-full font-medium text-gray-700 hover:text-indigo-800 "
+                        className="w-24 xsm:w-full font-medium text-gray-700 hover:text-indigo-800 "
                       >
                         {product.title}
                       </Link>
@@ -45,7 +45,7 @@ const OrderSummary = () => {
                     </div>
                     <p className="my-3 text-sm font-medium text-gray-900">
                       <IoPricetag className="inline text-gray-800 h-5 w-5 mr-1" />
-                      <span class="px-2 py-1  text-md font-bold leading-none text-gray-700 bg-gray-200 rounded-md">
+                      <span class="px-2 py-1 text-md font-bold leading-none text-gray-700 bg-gray-200 rounded-md">
                         ${product.price.toFixed(2)}
                       </span>
                     </p>

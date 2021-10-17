@@ -83,7 +83,7 @@ const CartSideBar = ({ open, setOpen }) => {
                                     <div className="flex justify-between text-sm sm:text-base font-medium text-gray-900">
                                       <Link
                                         to={`/products/${product.id}`}
-                                        className="w-24 sm:w-full font-medium text-gray-700 hover:text-indigo-800 "
+                                        className="w-24 xsm:w-full font-medium text-gray-700 hover:text-indigo-800 "
                                       >
                                         {product.title}
                                       </Link>
